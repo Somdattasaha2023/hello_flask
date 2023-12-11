@@ -1,34 +1,44 @@
-import html
-from flask import Flask, render_template, request
-
-from vsearch import search4letters
-
-app = Flask(__name__)
-
-@app.route("/")
-def home():
-    return "Hello, World!"
-
-
-@app.route('/search4',methods=['POST'])
-def do_search()  -> 'html' :
-  phrase = request.form['phrase']
-  letters = request.form['letters']  
-  title = "Here are your results : "
-  results = str(search4letters(phrase,letters))
-  return render_template('results.html',
-                         the_title=title,
-                         the_phrase=phrase,
-                         the_letters=letters,
-                         the_results=results,)
-                                       
-  
-
-@app.route('/entry')
-def entry_page()  -> 'html' :
-    return render_template('entry.html',the_title='welcome to seearch4letters on the web..this is new .....!')
+import pandas as pd
+import numpy as np
+#df=pd.read_csv("C:\\Users\\User\\Documents\\abc.csv")
+#df=pd.read_csv('som.csv')
+#print(df.head())
+#//Create Series from ndarray
+data=np.array(['a','b','c','d'])
+s = pd.Series(data)
+print(s)
 
 
+data=np.array(['a','b','c','d'])
+s = pd.Series(data,index=[100,101,102,103])
+print(s)
 
-if __name__ == '__main__':
-  app.run()
+
+#//Create series from dict
+data = { 'a' : 0, 'b' : 1 , 'c' : 2 , 'd' : 'x'}
+s = pd.Series(data)
+print(s)
+
+#//Create series from scalar
+import pandas as pd
+import numpy as np
+s = pd.Series(5,index=[0,1,2,3])
+print(s)
+
+#Retrieve the last 3 elements
+s=pd.Series([1,2,3,4,5], index=['a','b','c','d','e'])
+print(s[-3:])
+
+
+df = pd.DataFrame()
+print(df)
+
+
+
+data = [1,2,3,4,5]
+df = pd.DataFrame(data)
+print(df)
+
+data = [['Alex',10],['Bob',12],['Clarke',13]]
+df = pd.DataFrame(data,columns=['Name','Age'])
+print(df)
