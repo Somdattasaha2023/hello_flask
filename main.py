@@ -1,34 +1,26 @@
-import html
-from flask import Flask, render_template, request
+import smtplib
+import string
+BODY= ((
+    "From %s" % 'praiseland2023@gmail.com',
+     "To %s" % 'hanushiv2020@gmail.com',
+      "Subject %s" % 'Test mail',
+      "",'this is a test mail'
+    
+),"\r\n")
 
-from vsearch import search4letters
+server=smtplib.SMTP('smtp.gmail.com',587)
+server.set_debuglevel(1)
+server.ehlo()
+server.starttls()
+server.ehlo()
+server.login('praiseland2023@gmail.com','Martha#9978')
+server.sendmail('praiseland2023@gmail.com',['hanushiv2020@gmail.com'],BODY)
+server.quit()
+"""
 
-app = Flask(__name__)
+message="hello"
 
-@app.route("/")
-def home():
-    return "Hello, World!"
+print("Mail sent")
+server.quit()
 
-
-@app.route('/search4',methods=['POST'])
-def do_search()  -> 'html' :
-  phrase = request.form['phrase']
-  letters = request.form['letters']  
-  title = "Here are your results : "
-  results = str(search4letters(phrase,letters))
-  return render_template('results.html',
-                         the_title=title,
-                         the_phrase=phrase,
-                         the_letters=letters,
-                         the_results=results,)
-                                       
-  
-
-@app.route('/entry')
-def entry_page()  -> 'html' :
-    return render_template('entry.html',the_title='welcome to seearch4letters on the web..this is new .....!')
-
-
-
-if __name__ == '__main__':
-  app.run()
+"""

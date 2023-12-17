@@ -1,0 +1,9 @@
+Step 1: Make a dir 
+Step 2: then in cmd prompt give : django-admin startproject <projname>
+Step 3: thenn to execute : python manage.py runserver  --> takes you to http://127.0.0.1:8000/  
+it should display proper page : https://docs.djangoproject.com/en/5.0/
+Step 4: to create a new project : python manage.py startapp calc
+step 5: Copy urls.py to ur project and add the path
+step6: Make an entry in views.py - the defination of home request
+step 7 : Make an entry  path('',include(c'alc.urls')) in major folder urls.py
+step 8: python manage.py runserver
